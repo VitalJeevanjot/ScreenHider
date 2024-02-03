@@ -79,7 +79,9 @@
       <q-card class="q-ma-md" style="background-color: #fdfdfd">
         <q-card-section>
           <div class="row">
-            <span class="text-h6 self-center q-mr-sm">Enter key to unlock</span>
+            <span class="text-h6 self-center q-mr-sm">{{
+              lockedScreenBool ? "Enter key to unlock" : "Save a new key"
+            }}</span>
             <q-space />
             <q-btn
               icon="close"
@@ -141,6 +143,11 @@ export default defineComponent({
   },
   methods: {
     setupLockUnlockMethod(e) {
+      if (!LocalStorage.getItem("saved_pin")) {
+        Notify.create({ message: "🔑 Set up some key first" });
+        this.pinAskingDialog = true;
+        return;
+      }
       if (this.lockedScreenBool) {
         window.ScreenHiderAPI.setupLockStatus(false);
         this.lockedScreenBool = false;

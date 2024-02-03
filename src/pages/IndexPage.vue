@@ -46,6 +46,7 @@
           flat
           icon="key"
           class="q-ma-sm"
+          @click="pinAskingDialog = true"
           style="
             border: 2px solid #000000;
             border-radius: 8px;
@@ -73,17 +74,69 @@
         >
       </div>
     </div>
+
+    <q-dialog v-model="pinAskingDialog">
+      <q-card class="q-ma-md" style="background-color: #fdfdfd">
+        <q-card-section>
+          <div class="row">
+            <span class="text-h6 self-center q-mr-sm">Enter key to unlock</span>
+            <q-space />
+            <q-btn
+              icon="close"
+              style="
+                width: 3em !important;
+                height: 3em !important;
+                border-radius: 8px;
+              "
+              flat
+              @click="pinAskingDialog = false"
+            />
+          </div>
+        </q-card-section>
+        <q-card-section class="q-mt-none q-pt-none">
+          <div class="row justify-center">
+            <q-input
+              v-model="keyInput"
+              color="grey-10"
+              rounded
+              outlined
+              :type="lockedScreenBool ? 'password' : 'text'"
+            />
+          </div>
+          <div class="row justify-center q-mt-sm">
+            <q-btn
+              v-if="!lockedScreenBool"
+              rounded
+              label="Save"
+              flat
+              style="border: 2px solid #000000"
+              @click="savePinMethod"
+            />
+            <q-btn
+              v-if="lockedScreenBool"
+              rounded
+              label="Unlock"
+              flat
+              style="border: 2px solid #78eb80"
+              @click="unlockWithPinMethod"
+            />
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-
+import { LocalStorage, Notify } from "quasar";
 export default defineComponent({
   name: "IndexPage",
   data() {
     return {
       lockedScreenBool: false,
+      pinAskingDialog: false,
+      keyInput: "",
     };
   },
   methods: {
@@ -98,11 +151,40 @@ export default defineComponent({
       }
     },
     fireScreenUnlockMethod() {
-      console.log("called");
-      if (this.lockedScreenBool) {
+      this.pinAskingDialog = true;
+    },
+    savePinMethod() {
+      LocalStorage.set("saved_pin", this.getDigestedValue(this.keyInput));
+      this.pinAskingDialog = false;
+      this.keyInput = "";
+    },
+    unlockWithPinMethod() {
+      if (
+        this.getDigestedValue(this.keyInput) ==
+        LocalStorage.getItem("saved_pin")
+      ) {
         window.ScreenHiderAPI.setupLockStatus(false);
         this.lockedScreenBool = false;
+        this.pinAskingDialog = false;
+        Notify.create({ message: "🔓 Unlocked" });
+      } else {
+        Notify.create({ message: "🔒 Incorrect Pin" });
       }
+      this.keyInput = "";
+    },
+
+    getDigestedValue(val) {
+      var hash = 0,
+        i,
+        chr;
+      if (val.length === 0) return hash;
+      for (i = 0; i < val.length; i++) {
+        chr = val.charCodeAt(i);
+        hash = (hash << 8) - hash + chr;
+        hash |= 0; // Convert to 32bit integer
+        hash = 2147483647 % hash;
+      }
+      return hash;
     },
   },
 });

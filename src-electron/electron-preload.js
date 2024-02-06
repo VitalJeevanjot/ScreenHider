@@ -34,4 +34,7 @@ contextBridge.exposeInMainWorld("ScreenHiderAPI", {
   setupLockStatus: (status) => {
     return ipcRenderer.invoke("setup-lock-status", status);
   },
+  selectAndShowIMG: (status) => {
+    return ipcRenderer.invoke("select-and-show-IMG", status);
+  },
 });

@@ -1,5 +1,11 @@
 <template>
-  <q-page class="" style="overflow: hidden" @click="fireScreenUnlockMethod">
+  <q-page
+    class=""
+    :style="`overflow: hidden; background-color: ${backgroundColour}; ${
+      !backgroundTypeColour ? 'background-image: url(' + imgSrc + ')' : ''
+    }`"
+    @click="fireScreenUnlockMethod"
+  >
     <div v-if="!lockedScreenBool">
       <!-- <div
         class="row"
@@ -21,22 +27,37 @@
             border-radius: 8px;
             width: 1rem;
             height: 1rem;
+            background-color: #ffffff;
           "
         >
           <q-tooltip style="font-size: 1rem"
             >Choose background colour</q-tooltip
           >
+          <q-popup-proxy>
+            <q-banner
+              class="bg-black q-ma-none q-pa-none"
+              style="border: 2px solid #2f2f2f"
+            >
+              <q-color
+                v-model="backgroundColour"
+                class="my-picker"
+                @change="saveChangedBackgroundColourMethod"
+              />
+            </q-banner>
+          </q-popup-proxy>
         </q-btn>
 
         <q-btn
           flat
           class="q-ma-sm"
           icon="image"
+          @click="pickupAnImageMethod"
           style="
             border: 2px solid #000000;
             border-radius: 8px;
             width: 1rem;
             height: 1rem;
+            background-color: #ffffff;
           "
           ><q-tooltip style="font-size: 1rem"
             >Select an image to display</q-tooltip
@@ -52,6 +73,7 @@
             border-radius: 8px;
             width: 1rem;
             height: 1rem;
+            background-color: #ffffff;
           "
           ><q-tooltip style="font-size: 1rem"
             >Setup new key for unlocking</q-tooltip
@@ -67,6 +89,7 @@
             border-radius: 8px;
             width: 4rem;
             height: 4rem;
+            background-color: #ffffff;
           "
           ><q-tooltip style="font-size: 1rem">{{
             lockedScreenBool ? "Click to unlock" : "Click to lock"
@@ -139,9 +162,37 @@ export default defineComponent({
       lockedScreenBool: false,
       pinAskingDialog: false,
       keyInput: "",
+      backgroundColour: "#ffffff",
+      imgSrc: null,
+      backgroundTypeColour: true,
     };
   },
+  mounted() {
+    if (LocalStorage.getItem("savedBackgroundColour")) {
+      this.backgroundColour = LocalStorage.getItem("savedBackgroundColour");
+    }
+    if (LocalStorage.getItem("SavedCurrentImageData")) {
+      this.imgSrc = LocalStorage.getItem("SavedCurrentImageData");
+    }
+    this.backgroundTypeColour = LocalStorage.getItem("backgroundTypeColour");
+    if (
+      this.backgroundTypeColour == null ||
+      this.backgroundTypeColour == undefined
+    ) {
+      this.backgroundTypeColour = true;
+    }
+  },
   methods: {
+    async pickupAnImageMethod() {
+      var imgData = await window.ScreenHiderAPI.selectAndShowIMG();
+      if (!imgData) {
+        return;
+      }
+      this.imgSrc = imgData;
+      LocalStorage.set("SavedCurrentImageData", this.imgSrc);
+      this.backgroundTypeColour = false;
+      LocalStorage.set("backgroundTypeColour", this.backgroundTypeColour);
+    },
     setupLockUnlockMethod(e) {
       if (!LocalStorage.getItem("saved_pin")) {
         Notify.create({ message: "🔑 Set up some key first" });
@@ -158,7 +209,14 @@ export default defineComponent({
       }
     },
     fireScreenUnlockMethod() {
-      this.pinAskingDialog = true;
+      if (this.lockedScreenBool) {
+        this.pinAskingDialog = true;
+      }
+    },
+    saveChangedBackgroundColourMethod(value) {
+      LocalStorage.set("savedBackgroundColour", value);
+      this.backgroundTypeColour = true;
+      LocalStorage.set("backgroundTypeColour", this.backgroundTypeColour);
     },
     savePinMethod() {
       LocalStorage.set("saved_pin", this.getDigestedValue(this.keyInput));

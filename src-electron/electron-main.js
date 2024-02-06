@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, dialog, ipcMain, nativeImage } from "electron";
 import path from "path";
 import os from "os";
 
@@ -44,6 +44,7 @@ function createWindow() {
 
 app.whenReady().then(() => {
   ipcMain.handle("setup-lock-status", setupLockStatus);
+  ipcMain.handle("select-and-show-IMG", selectAndShowIMG);
   createWindow();
 });
 
@@ -68,6 +69,7 @@ function setupLockStatus(args, status) {
     mainWindow.setMaximizable(false);
     mainWindow.setFullScreenable(false);
     mainWindow.setClosable(false);
+    mainWindow.moveTop();
   } else {
     mainWindow.setAlwaysOnTop(false);
     mainWindow.setResizable(true);
@@ -76,5 +78,21 @@ function setupLockStatus(args, status) {
     mainWindow.setMaximizable(true);
     mainWindow.setFullScreenable(true);
     mainWindow.setClosable(true);
+  }
+}
+
+async function selectAndShowIMG(event) {
+  const { canceled, filePaths } = await dialog.showOpenDialog({
+    title: "Select jpg/png",
+    properties: ["openFile"],
+    filters: [{ name: "Images", extensions: ["jpg", "png"] }],
+  });
+
+  if (!canceled) {
+    // Todo: create a local copy with changed name
+    let result = await nativeImage.createFromPath(filePaths[0]);
+    return result.toDataURL();
+  } else {
+    return false;
   }
 }

@@ -30,7 +30,7 @@
 
 import { contextBridge, ipcRenderer } from "electron";
 
-contextBridge.exposeInMainWorld("ScreenHiderAPI", {
+contextBridge.exposeInMainWorld("ScreenHideAPI", {
   setupLockStatus: (status) => {
     return ipcRenderer.invoke("setup-lock-status", status);
   },

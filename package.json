@@ -1,8 +1,8 @@
 {
-  "name": "screenhider",
+  "name": "screenhide",
   "version": "0.0.1",
   "description": "Hide portion of screen or whole screen with choice of colour or image",
-  "productName": "Screen Hider",
+  "productName": "Screen Hide",
   "author": "Jeevanjot Singh <40867747+VitalJeevanjot@users.noreply.github.com>",
   "private": true,
   "scripts": {

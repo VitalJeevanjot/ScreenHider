@@ -184,7 +184,7 @@ export default defineComponent({
   },
   methods: {
     async pickupAnImageMethod() {
-      var imgData = await window.ScreenHiderAPI.selectAndShowIMG();
+      var imgData = await window.ScreenHideAPI.selectAndShowIMG();
       if (!imgData) {
         return;
       }
@@ -200,10 +200,10 @@ export default defineComponent({
         return;
       }
       if (this.lockedScreenBool) {
-        window.ScreenHiderAPI.setupLockStatus(false);
+        window.ScreenHideAPI.setupLockStatus(false);
         this.lockedScreenBool = false;
       } else {
-        window.ScreenHiderAPI.setupLockStatus(true);
+        window.ScreenHideAPI.setupLockStatus(true);
         this.lockedScreenBool = true;
         e.stopPropagation();
       }
@@ -228,7 +228,7 @@ export default defineComponent({
         this.getDigestedValue(this.keyInput) ==
         LocalStorage.getItem("saved_pin")
       ) {
-        window.ScreenHiderAPI.setupLockStatus(false);
+        window.ScreenHideAPI.setupLockStatus(false);
         this.lockedScreenBool = false;
         this.pinAskingDialog = false;
         Notify.create({ message: "🔓 Unlocked" });

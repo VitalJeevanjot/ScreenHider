@@ -185,9 +185,24 @@ module.exports = configure(function (/* ctx */) {
 
       builder: {
         // https://www.electron.build/configuration/configuration
-
-        appId: "screenhide",
+        appId: "	27126VitalVictor.ScreenHide",
+        asar: false,
+        win: {
+          target: "appx", // or appx or more
+        },
+        appx: {
+          displayName: "Screen Hide",
+          publisher: "CN=D8EA149B-EABF-46F9-A877-703D35BFD389",
+          publisherDisplayName: "VitalVictor",
+          languages: "en-GB",
+        },
+        includeSubNodeModules: true,
       },
+      // builder: {
+      //   // https://www.electron.build/configuration/configuration
+
+      //   appId: "screenhide",
+      // },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-browser-extensions/configuring-bex

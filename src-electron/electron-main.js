@@ -21,7 +21,8 @@ function createWindow() {
       // More info: https://v2.quasar.dev/quasar-cli-vite/developing-electron-apps/electron-preload-script
       preload: path.resolve(__dirname, process.env.QUASAR_ELECTRON_PRELOAD),
     },
-    // titleBarStyle: "hidden",
+    titleBarStyle: "hidden",
+    titleBarOverlay: true,
   });
   mainWindow.removeMenu();
 

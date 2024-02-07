@@ -7,7 +7,7 @@
     @click="fireScreenUnlockMethod"
   >
     <div v-if="!lockedScreenBool">
-      <!-- <div
+      <div
         class="row"
         style="
           width: 100%;
@@ -16,7 +16,7 @@
           -webkit-user-select: none;
           -webkit-app-region: drag;
         "
-      /> -->
+      />
       <div class="row justify-center q-mt-sm">
         <q-btn
           flat

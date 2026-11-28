@@ -1,11 +1,14 @@
 import { app, BrowserWindow, dialog, ipcMain, nativeImage } from "electron";
 import path from "path";
 import os from "os";
+import { messages } from "../src/i18n/messages";
+import { DEFAULT_LOCALE, isSupportedLocale, resolveLocale } from "../src/i18n/locale.mjs";
 
 // needed in case process is undefined under Linux
 const platform = process.platform || os.platform();
 
 let mainWindow;
+let startupLocale = DEFAULT_LOCALE;
 
 function createWindow() {
   /**
@@ -44,6 +47,8 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+  startupLocale = resolveLocale(app.getLocale());
+  ipcMain.handle("get-app-locale", () => startupLocale);
   ipcMain.handle("setup-lock-status", setupLockStatus);
   ipcMain.handle("select-and-show-IMG", selectAndShowIMG);
   createWindow();
@@ -82,18 +87,17 @@ function setupLockStatus(args, status) {
   }
 }
 
-async function selectAndShowIMG(event) {
-  const { canceled, filePaths } = await dialog.showOpenDialog({
-    title: "Select jpg/png",
+async function selectAndShowIMG(_event, locale) {
+  const { imageDialog } = messages[isSupportedLocale(locale) ? locale : startupLocale];
+  const { canceled, filePaths } = await dialog.showOpenDialog(mainWindow, {
+    title: imageDialog.title,
+    buttonLabel: imageDialog.open,
     properties: ["openFile"],
-    filters: [{ name: "Images", extensions: ["jpg", "png"] }],
+    filters: [{ name: imageDialog.images, extensions: ["jpg", "png"] }],
   });
 
-  if (!canceled) {
-    // Todo: create a local copy with changed name
-    let result = await nativeImage.createFromPath(filePaths[0]);
-    return result.toDataURL();
-  } else {
-    return false;
-  }
+  if (canceled) return false;
+  const result = nativeImage.createFromPath(filePaths[0]);
+  if (result.isEmpty()) throw new Error("Empty native image");
+  return result.toDataURL();
 }

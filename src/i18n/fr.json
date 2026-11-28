@@ -1,0 +1,41 @@
+{
+  "languageName": "Français",
+  "app": {
+    "description": "Masquez une partie de l’écran ou tout l’écran avec une couleur ou une image"
+  },
+  "toolbar": {
+    "backgroundColour": "Choisir la couleur de fond",
+    "selectImage": "Sélectionner une image à afficher",
+    "setupKey": "Configurer un nouveau code PIN de déverrouillage",
+    "lock": "Cliquer pour verrouiller",
+    "unlock": "Cliquer pour déverrouiller"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "systemDefault": "Langue du système"
+  },
+  "common": {
+    "close": "Fermer"
+  },
+  "pin": {
+    "enterKey": "Saisissez le code PIN pour déverrouiller",
+    "saveKey": "Enregistrer un nouveau code PIN",
+    "field": "Code PIN",
+    "save": "Enregistrer",
+    "unlock": "Déverrouiller",
+    "setupFirst": "🔑 Configurez d’abord un code PIN",
+    "unlocked": "🔓 Déverrouillé",
+    "incorrect": "🔒 Code PIN incorrect"
+  },
+  "imageDialog": {
+    "title": "Sélectionner une image JPG ou PNG",
+    "images": "Images",
+    "open": "Ouvrir",
+    "failed": "Impossible d’ouvrir l’image."
+  },
+  "notFound": {
+    "title": "Oups. Il n’y a rien ici…",
+    "goHome": "Retour à l’accueil"
+  }
+}

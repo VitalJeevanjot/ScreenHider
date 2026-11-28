@@ -1,0 +1,41 @@
+{
+  "languageName": "Nederlands",
+  "app": {
+    "description": "Bedek een deel van het scherm of het hele scherm met een kleur of afbeelding"
+  },
+  "toolbar": {
+    "backgroundColour": "Achtergrondkleur kiezen",
+    "selectImage": "Een afbeelding kiezen om weer te geven",
+    "setupKey": "Een nieuwe pincode voor ontgrendeling instellen",
+    "lock": "Klik om te vergrendelen",
+    "unlock": "Klik om te ontgrendelen"
+  },
+  "settings": {
+    "title": "Instellingen",
+    "language": "Taal",
+    "systemDefault": "Systeemstandaard"
+  },
+  "common": {
+    "close": "Sluiten"
+  },
+  "pin": {
+    "enterKey": "Voer de pincode in om te ontgrendelen",
+    "saveKey": "Een nieuwe pincode opslaan",
+    "field": "Pincode",
+    "save": "Opslaan",
+    "unlock": "Ontgrendelen",
+    "setupFirst": "🔑 Stel eerst een pincode in",
+    "unlocked": "🔓 Ontgrendeld",
+    "incorrect": "🔒 Onjuiste pincode"
+  },
+  "imageDialog": {
+    "title": "JPG- of PNG-afbeelding selecteren",
+    "images": "Afbeeldingen",
+    "open": "Openen",
+    "failed": "De afbeelding kon niet worden geopend."
+  },
+  "notFound": {
+    "title": "Oeps. Hier is niets...",
+    "goHome": "Naar start"
+  }
+}

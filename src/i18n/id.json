@@ -1,0 +1,41 @@
+{
+  "languageName": "Bahasa Indonesia",
+  "app": {
+    "description": "Tutupi sebagian atau seluruh layar dengan warna atau gambar"
+  },
+  "toolbar": {
+    "backgroundColour": "Pilih warna latar belakang",
+    "selectImage": "Pilih gambar untuk ditampilkan",
+    "setupKey": "Atur PIN baru untuk membuka kunci",
+    "lock": "Klik untuk mengunci",
+    "unlock": "Klik untuk membuka kunci"
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "language": "Bahasa",
+    "systemDefault": "Bawaan sistem"
+  },
+  "common": {
+    "close": "Tutup"
+  },
+  "pin": {
+    "enterKey": "Masukkan PIN untuk membuka kunci",
+    "saveKey": "Simpan PIN baru",
+    "field": "PIN",
+    "save": "Simpan",
+    "unlock": "Buka kunci",
+    "setupFirst": "🔑 Atur PIN terlebih dahulu",
+    "unlocked": "🔓 Kunci dibuka",
+    "incorrect": "🔒 PIN salah"
+  },
+  "imageDialog": {
+    "title": "Pilih gambar JPG atau PNG",
+    "images": "Gambar",
+    "open": "Buka",
+    "failed": "Gambar tidak bisa dibuka."
+  },
+  "notFound": {
+    "title": "Ups. Tidak ada apa-apa di sini...",
+    "goHome": "Kembali ke beranda"
+  }
+}

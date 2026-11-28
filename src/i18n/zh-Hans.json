@@ -1,0 +1,41 @@
+{
+  "languageName": "简体中文",
+  "app": {
+    "description": "使用颜色或图片遮住部分或整个屏幕"
+  },
+  "toolbar": {
+    "backgroundColour": "选择背景颜色",
+    "selectImage": "选择要显示的图片",
+    "setupKey": "设置新的解锁 PIN 码",
+    "lock": "点击锁定",
+    "unlock": "点击解锁"
+  },
+  "settings": {
+    "title": "设置",
+    "language": "语言",
+    "systemDefault": "系统默认"
+  },
+  "common": {
+    "close": "关闭"
+  },
+  "pin": {
+    "enterKey": "输入 PIN 码以解锁",
+    "saveKey": "保存新的 PIN 码",
+    "field": "PIN 码",
+    "save": "保存",
+    "unlock": "解锁",
+    "setupFirst": "🔑 请先设置 PIN 码",
+    "unlocked": "🔓 已解锁",
+    "incorrect": "🔒 PIN 码不正确"
+  },
+  "imageDialog": {
+    "title": "选择 JPG 或 PNG 图片",
+    "images": "图片",
+    "open": "打开",
+    "failed": "无法打开图片。"
+  },
+  "notFound": {
+    "title": "这里什么也没有……",
+    "goHome": "返回首页"
+  }
+}

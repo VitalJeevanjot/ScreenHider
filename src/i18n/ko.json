@@ -1,0 +1,41 @@
+{
+  "languageName": "한국어",
+  "app": {
+    "description": "색상이나 이미지로 화면의 일부 또는 전체를 가립니다"
+  },
+  "toolbar": {
+    "backgroundColour": "배경색 선택",
+    "selectImage": "표시할 이미지 선택",
+    "setupKey": "잠금 해제용 새 PIN 설정",
+    "lock": "클릭하여 잠그기",
+    "unlock": "클릭하여 잠금 해제"
+  },
+  "settings": {
+    "title": "설정",
+    "language": "언어",
+    "systemDefault": "시스템 기본값"
+  },
+  "common": {
+    "close": "닫기"
+  },
+  "pin": {
+    "enterKey": "PIN을 입력하여 잠금을 해제하세요",
+    "saveKey": "새 PIN 저장",
+    "field": "PIN",
+    "save": "저장",
+    "unlock": "잠금 해제",
+    "setupFirst": "🔑 먼저 PIN을 설정하세요",
+    "unlocked": "🔓 잠금이 해제되었습니다",
+    "incorrect": "🔒 PIN이 올바르지 않습니다"
+  },
+  "imageDialog": {
+    "title": "JPG 또는 PNG 이미지 선택",
+    "images": "이미지",
+    "open": "열기",
+    "failed": "이미지를 열 수 없습니다."
+  },
+  "notFound": {
+    "title": "여기에는 아무것도 없습니다…",
+    "goHome": "홈으로 이동"
+  }
+}

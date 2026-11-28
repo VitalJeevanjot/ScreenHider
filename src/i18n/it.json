@@ -1,0 +1,41 @@
+{
+  "languageName": "Italiano",
+  "app": {
+    "description": "Nascondi una parte dello schermo o l’intero schermo con un colore o un’immagine"
+  },
+  "toolbar": {
+    "backgroundColour": "Scegli il colore di sfondo",
+    "selectImage": "Seleziona un’immagine da mostrare",
+    "setupKey": "Imposta un nuovo PIN di sblocco",
+    "lock": "Fai clic per bloccare",
+    "unlock": "Fai clic per sbloccare"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "language": "Lingua",
+    "systemDefault": "Predefinita di sistema"
+  },
+  "common": {
+    "close": "Chiudi"
+  },
+  "pin": {
+    "enterKey": "Inserisci il PIN per sbloccare",
+    "saveKey": "Salva un nuovo PIN",
+    "field": "PIN",
+    "save": "Salva",
+    "unlock": "Sblocca",
+    "setupFirst": "🔑 Imposta prima un PIN",
+    "unlocked": "🔓 Sbloccato",
+    "incorrect": "🔒 PIN errato"
+  },
+  "imageDialog": {
+    "title": "Seleziona un’immagine JPG o PNG",
+    "images": "Immagini",
+    "open": "Apri",
+    "failed": "Impossibile aprire l’immagine."
+  },
+  "notFound": {
+    "title": "Ops. Qui non c’è niente...",
+    "goHome": "Torna alla schermata iniziale"
+  }
+}

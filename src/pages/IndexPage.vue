@@ -1,147 +1,112 @@
 <template>
   <q-page
-    class=""
-    :style="`overflow: hidden; background-color: ${backgroundColour}; ${
-      !backgroundTypeColour ? 'background-image: url(' + imgSrc + ')' : ''
-    }`"
+    class="screen-page"
+    :style="{
+      backgroundColor: backgroundColour,
+      backgroundImage: !backgroundTypeColour ? 'url(' + imgSrc + ')' : '',
+    }"
     @click="fireScreenUnlockMethod"
   >
     <div v-if="!lockedScreenBool">
-      <div
-        class="row"
-        style="
-          width: 100%;
-          height: 5vh;
-          background-color: #1d1d1d;
-          -webkit-user-select: none;
-          -webkit-app-region: drag;
-        "
-      />
-      <div class="row justify-center q-mt-sm">
+      <div class="screen-drag-area" />
+      <div class="screen-toolbar">
         <q-btn
           flat
-          class="q-ma-sm"
+          class="screen-tool"
           icon="colorize"
-          style="
-            border: 2px solid #000000;
-            border-radius: 8px;
-            width: 1rem;
-            height: 1rem;
-            background-color: #ffffff;
-          "
+          :aria-label="$t('toolbar.backgroundColour')"
         >
-          <q-tooltip style="font-size: 1rem"
-            >Choose background colour</q-tooltip
-          >
+          <q-tooltip class="screen-tooltip">{{ $t("toolbar.backgroundColour") }}</q-tooltip>
           <q-popup-proxy>
-            <q-banner
-              class="bg-black q-ma-none q-pa-none"
-              style="border: 2px solid #2f2f2f"
-            >
-              <q-color
-                v-model="backgroundColour"
-                class="my-picker"
-                @change="saveChangedBackgroundColourMethod"
-              />
+            <q-banner class="bg-black q-ma-none q-pa-none" style="border: 2px solid #2f2f2f">
+              <q-color v-model="backgroundColour" @change="saveChangedBackgroundColourMethod" />
             </q-banner>
           </q-popup-proxy>
         </q-btn>
 
         <q-btn
           flat
-          class="q-ma-sm"
+          class="screen-tool"
           icon="image"
+          :aria-label="$t('toolbar.selectImage')"
           @click="pickupAnImageMethod"
-          style="
-            border: 2px solid #000000;
-            border-radius: 8px;
-            width: 1rem;
-            height: 1rem;
-            background-color: #ffffff;
-          "
-          ><q-tooltip style="font-size: 1rem"
-            >Select an image to display</q-tooltip
-          ></q-btn
         >
+          <q-tooltip class="screen-tooltip">{{ $t("toolbar.selectImage") }}</q-tooltip>
+        </q-btn>
+
         <q-btn
           flat
+          class="screen-tool"
           icon="key"
-          class="q-ma-sm"
+          :aria-label="$t('toolbar.setupKey')"
           @click="pinAskingDialog = true"
-          style="
-            border: 2px solid #000000;
-            border-radius: 8px;
-            width: 1rem;
-            height: 1rem;
-            background-color: #ffffff;
-          "
-          ><q-tooltip style="font-size: 1rem"
-            >Setup new key for unlocking</q-tooltip
-          ></q-btn
         >
+          <q-tooltip class="screen-tooltip">{{ $t("toolbar.setupKey") }}</q-tooltip>
+        </q-btn>
+
         <q-btn
           flat
-          :icon="`${lockedScreenBool ? 'lock' : 'lock_open'}`"
-          class="q-ma-sm"
-          @click="setupLockUnlockMethod"
-          style="
-            border: 2px solid #000000;
-            border-radius: 8px;
-            width: 4rem;
-            height: 4rem;
-            background-color: #ffffff;
-          "
-          ><q-tooltip style="font-size: 1rem">{{
-            lockedScreenBool ? "Click to unlock" : "Click to lock"
-          }}</q-tooltip></q-btn
+          class="screen-tool"
+          icon="settings"
+          :aria-label="$t('settings.title')"
+          @click="settingsDialog = true"
         >
+          <q-tooltip class="screen-tooltip">{{ $t("settings.title") }}</q-tooltip>
+        </q-btn>
+
+        <q-btn
+          flat
+          class="screen-tool screen-lock"
+          :icon="lockedScreenBool ? 'lock' : 'lock_open'"
+          :aria-label="$t(lockedScreenBool ? 'toolbar.unlock' : 'toolbar.lock')"
+          @click="setupLockUnlockMethod"
+        >
+          <q-tooltip class="screen-tooltip">{{
+            $t(lockedScreenBool ? "toolbar.unlock" : "toolbar.lock")
+          }}</q-tooltip>
+        </q-btn>
       </div>
     </div>
 
-    <q-dialog v-model="pinAskingDialog">
-      <q-card class="q-ma-md" style="background-color: #fdfdfd">
-        <q-card-section>
-          <div class="row">
-            <span class="text-h6 self-center q-mr-sm">{{
-              lockedScreenBool ? "Enter key to unlock" : "Save a new key"
-            }}</span>
-            <q-space />
-            <q-btn
-              icon="close"
-              style="
-                width: 3em !important;
-                height: 3em !important;
-                border-radius: 8px;
-              "
-              flat
-              @click="pinAskingDialog = false"
-            />
-          </div>
+    <SettingsDialog v-if="!lockedScreenBool" v-model="settingsDialog" />
+
+    <q-dialog v-model="pinAskingDialog" aria-labelledby="pin-dialog-title">
+      <q-card class="screen-dialog">
+        <q-card-section class="screen-dialog-header">
+          <h2 id="pin-dialog-title" class="screen-dialog-title">
+            {{ $t(lockedScreenBool ? "pin.enterKey" : "pin.saveKey") }}
+          </h2>
+          <q-btn
+            flat
+            round
+            icon="close"
+            :aria-label="$t('common.close')"
+            @click="pinAskingDialog = false"
+          />
         </q-card-section>
-        <q-card-section class="q-mt-none q-pt-none">
-          <div class="row justify-center">
-            <q-input
-              v-model="keyInput"
-              color="grey-10"
-              rounded
-              outlined
-              :type="lockedScreenBool ? 'password' : 'text'"
-            />
-          </div>
+        <q-card-section>
+          <q-input
+            v-model="keyInput"
+            outlined
+            rounded
+            color="grey-10"
+            :aria-label="$t('pin.field')"
+            :type="lockedScreenBool ? 'password' : 'text'"
+          />
           <div class="row justify-center q-mt-sm">
             <q-btn
               v-if="!lockedScreenBool"
-              rounded
-              label="Save"
               flat
-              style="border: 2px solid #000000"
+              rounded
+              :label="$t('pin.save')"
+              style="border: 2px solid #000"
               @click="savePinMethod"
             />
             <q-btn
-              v-if="lockedScreenBool"
-              rounded
-              label="Unlock"
+              v-else
               flat
+              rounded
+              :label="$t('pin.unlock')"
               style="border: 2px solid #78eb80"
               @click="unlockWithPinMethod"
             />
@@ -155,17 +120,27 @@
 <script>
 import { defineComponent } from "vue";
 import { LocalStorage, Notify } from "quasar";
+import SettingsDialog from "components/SettingsDialog.vue";
 export default defineComponent({
   name: "IndexPage",
+  components: { SettingsDialog },
   data() {
     return {
       lockedScreenBool: false,
       pinAskingDialog: false,
+      settingsDialog: false,
+      dismissNotification: null,
       keyInput: "",
       backgroundColour: "#ffffff",
       imgSrc: null,
       backgroundTypeColour: true,
     };
+  },
+  watch: {
+    "$i18n.locale"() {
+      this.dismissNotification?.();
+      this.dismissNotification = null;
+    },
   },
   mounted() {
     if (LocalStorage.getItem("savedBackgroundColour")) {
@@ -175,27 +150,30 @@ export default defineComponent({
       this.imgSrc = LocalStorage.getItem("SavedCurrentImageData");
     }
     this.backgroundTypeColour = LocalStorage.getItem("backgroundTypeColour");
-    if (
-      this.backgroundTypeColour == null ||
-      this.backgroundTypeColour == undefined
-    ) {
+    if (this.backgroundTypeColour == null || this.backgroundTypeColour == undefined) {
       this.backgroundTypeColour = true;
     }
   },
   methods: {
+    showNotification(key) {
+      this.dismissNotification?.();
+      this.dismissNotification = Notify.create({ message: this.$t(key) });
+    },
     async pickupAnImageMethod() {
-      var imgData = await window.ScreenHideAPI.selectAndShowIMG();
-      if (!imgData) {
-        return;
+      try {
+        const image = await window.ScreenHideAPI.selectAndShowIMG(this.$i18n.locale);
+        if (!image) return;
+        LocalStorage.set("SavedCurrentImageData", image);
+        LocalStorage.set("backgroundTypeColour", false);
+        this.imgSrc = image;
+        this.backgroundTypeColour = false;
+      } catch {
+        this.showNotification("imageDialog.failed");
       }
-      this.imgSrc = imgData;
-      LocalStorage.set("SavedCurrentImageData", this.imgSrc);
-      this.backgroundTypeColour = false;
-      LocalStorage.set("backgroundTypeColour", this.backgroundTypeColour);
     },
     setupLockUnlockMethod(e) {
       if (!LocalStorage.getItem("saved_pin")) {
-        Notify.create({ message: "🔑 Set up some key first" });
+        this.showNotification("pin.setupFirst");
         this.pinAskingDialog = true;
         return;
       }
@@ -224,16 +202,13 @@ export default defineComponent({
       this.keyInput = "";
     },
     unlockWithPinMethod() {
-      if (
-        this.getDigestedValue(this.keyInput) ==
-        LocalStorage.getItem("saved_pin")
-      ) {
+      if (this.getDigestedValue(this.keyInput) == LocalStorage.getItem("saved_pin")) {
         window.ScreenHideAPI.setupLockStatus(false);
         this.lockedScreenBool = false;
         this.pinAskingDialog = false;
-        Notify.create({ message: "🔓 Unlocked" });
+        this.showNotification("pin.unlocked");
       } else {
-        Notify.create({ message: "🔒 Incorrect Pin" });
+        this.showNotification("pin.incorrect");
       }
       this.keyInput = "";
     },
@@ -254,3 +229,36 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.screen-page {
+  overflow: hidden;
+}
+
+.screen-drag-area {
+  min-height: max(2rem, 5vh);
+  background-color: #1d1d1d;
+  user-select: none;
+  -webkit-app-region: drag;
+}
+
+.screen-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.screen-tool {
+  border: 2px solid #000;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.screen-lock {
+  width: 4rem;
+  height: 4rem;
+}
+</style>

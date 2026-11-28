@@ -1,0 +1,41 @@
+{
+  "languageName": "Deutsch",
+  "app": {
+    "description": "Teilbereiche oder den gesamten Bildschirm mit einer Farbe oder einem Bild verdecken"
+  },
+  "toolbar": {
+    "backgroundColour": "Hintergrundfarbe auswählen",
+    "selectImage": "Ein Bild zur Anzeige auswählen",
+    "setupKey": "Eine neue PIN zum Entsperren einrichten",
+    "lock": "Zum Sperren klicken",
+    "unlock": "Zum Entsperren klicken"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "systemDefault": "Systemstandardsprache"
+  },
+  "common": {
+    "close": "Schließen"
+  },
+  "pin": {
+    "enterKey": "Zum Entsperren PIN eingeben",
+    "saveKey": "Eine neue PIN speichern",
+    "field": "PIN",
+    "save": "Speichern",
+    "unlock": "Entsperren",
+    "setupFirst": "🔑 Richten Sie zuerst eine PIN ein",
+    "unlocked": "🔓 Entsperrt",
+    "incorrect": "🔒 Falsche PIN"
+  },
+  "imageDialog": {
+    "title": "JPG- oder PNG-Bild auswählen",
+    "images": "Bilder",
+    "open": "Öffnen",
+    "failed": "Das Bild konnte nicht geöffnet werden."
+  },
+  "notFound": {
+    "title": "Ups. Hier gibt es nichts …",
+    "goHome": "Zur Startseite"
+  }
+}

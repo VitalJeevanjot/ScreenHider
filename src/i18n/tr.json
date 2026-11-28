@@ -1,0 +1,41 @@
+{
+  "languageName": "Türkçe",
+  "app": {
+    "description": "Ekranın bir bölümünü veya tamamını bir renk ya da resimle kapatın"
+  },
+  "toolbar": {
+    "backgroundColour": "Arka plan rengini seç",
+    "selectImage": "Gösterilecek bir resim seç",
+    "setupKey": "Kilidi açmak için yeni bir PIN ayarla",
+    "lock": "Kilitlemek için tıklayın",
+    "unlock": "Kilidi açmak için tıklayın"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "language": "Dil",
+    "systemDefault": "Sistem varsayılanı"
+  },
+  "common": {
+    "close": "Kapat"
+  },
+  "pin": {
+    "enterKey": "Kilidi açmak için PIN’i girin",
+    "saveKey": "Yeni bir PIN kaydet",
+    "field": "PIN",
+    "save": "Kaydet",
+    "unlock": "Kilidi aç",
+    "setupFirst": "🔑 Önce bir PIN ayarlayın",
+    "unlocked": "🔓 Kilit açıldı",
+    "incorrect": "🔒 Yanlış PIN"
+  },
+  "imageDialog": {
+    "title": "JPG veya PNG resmi seç",
+    "images": "Resimler",
+    "open": "Aç",
+    "failed": "Resim açılamadı."
+  },
+  "notFound": {
+    "title": "Burada hiçbir şey yok...",
+    "goHome": "Ana sayfaya dön"
+  }
+}

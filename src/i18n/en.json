@@ -1,0 +1,41 @@
+{
+  "languageName": "English",
+  "app": {
+    "description": "Hide portion of screen or whole screen with choice of colour or image"
+  },
+  "toolbar": {
+    "backgroundColour": "Choose background colour",
+    "selectImage": "Select an image to display",
+    "setupKey": "Setup new key for unlocking",
+    "lock": "Click to lock",
+    "unlock": "Click to unlock"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "systemDefault": "System default"
+  },
+  "common": {
+    "close": "Close"
+  },
+  "pin": {
+    "enterKey": "Enter key to unlock",
+    "saveKey": "Save a new key",
+    "field": "PIN",
+    "save": "Save",
+    "unlock": "Unlock",
+    "setupFirst": "🔑 Set up some key first",
+    "unlocked": "🔓 Unlocked",
+    "incorrect": "🔒 Incorrect Pin"
+  },
+  "imageDialog": {
+    "title": "Select jpg/png",
+    "images": "Images",
+    "open": "Open",
+    "failed": "The image could not be opened."
+  },
+  "notFound": {
+    "title": "Oops. Nothing here...",
+    "goHome": "Go Home"
+  }
+}

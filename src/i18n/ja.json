@@ -1,0 +1,41 @@
+{
+  "languageName": "日本語",
+  "app": {
+    "description": "画面の一部または全体を色や画像で覆います"
+  },
+  "toolbar": {
+    "backgroundColour": "背景色を選択",
+    "selectImage": "表示する画像を選択",
+    "setupKey": "ロック解除用の新しいPINを設定",
+    "lock": "クリックしてロック",
+    "unlock": "クリックしてロックを解除"
+  },
+  "settings": {
+    "title": "設定",
+    "language": "言語",
+    "systemDefault": "システムの既定値"
+  },
+  "common": {
+    "close": "閉じる"
+  },
+  "pin": {
+    "enterKey": "PINを入力してロックを解除",
+    "saveKey": "新しいPINを保存",
+    "field": "PIN",
+    "save": "保存",
+    "unlock": "ロックを解除",
+    "setupFirst": "🔑 先にPINを設定してください",
+    "unlocked": "🔓 ロックを解除しました",
+    "incorrect": "🔒 PINが正しくありません"
+  },
+  "imageDialog": {
+    "title": "JPGまたはPNG画像を選択",
+    "images": "画像",
+    "open": "開く",
+    "failed": "画像を開けませんでした。"
+  },
+  "notFound": {
+    "title": "ここには何もありません…",
+    "goHome": "ホームに戻る"
+  }
+}

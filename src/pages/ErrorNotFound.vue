@@ -1,12 +1,10 @@
 <template>
   <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
     <div>
-      <div style="font-size: 30vh">
-        404
-      </div>
+      <div style="font-size: 30vh">404</div>
 
-      <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
+      <div class="not-found-message">
+        {{ $t('notFound.title') }}
       </div>
 
       <q-btn
@@ -15,7 +13,7 @@
         text-color="blue"
         unelevated
         to="/"
-        label="Go Home"
+        :label="$t('notFound.goHome')"
         no-caps
       />
     </div>
@@ -29,3 +27,12 @@ export default defineComponent({
   name: 'ErrorNotFound'
 })
 </script>
+
+<style scoped>
+.not-found-message {
+  font-size: clamp(1.5rem, 7vw, 3.75rem);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  opacity: 0.7;
+}
+</style>

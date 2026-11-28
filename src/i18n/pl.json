@@ -1,0 +1,41 @@
+{
+  "languageName": "Polski",
+  "app": {
+    "description": "Zasłoń część ekranu lub cały ekran kolorem albo obrazem"
+  },
+  "toolbar": {
+    "backgroundColour": "Wybierz kolor tła",
+    "selectImage": "Wybierz obraz do wyświetlenia",
+    "setupKey": "Ustaw nowy kod PIN do odblokowywania",
+    "lock": "Kliknij, aby zablokować",
+    "unlock": "Kliknij, aby odblokować"
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "language": "Język",
+    "systemDefault": "Domyślny język systemu"
+  },
+  "common": {
+    "close": "Zamknij"
+  },
+  "pin": {
+    "enterKey": "Wpisz kod PIN, aby odblokować",
+    "saveKey": "Zapisz nowy kod PIN",
+    "field": "Kod PIN",
+    "save": "Zapisz",
+    "unlock": "Odblokuj",
+    "setupFirst": "🔑 Najpierw ustaw kod PIN",
+    "unlocked": "🔓 Odblokowano",
+    "incorrect": "🔒 Nieprawidłowy kod PIN"
+  },
+  "imageDialog": {
+    "title": "Wybierz obraz JPG lub PNG",
+    "images": "Obrazy",
+    "open": "Otwórz",
+    "failed": "Nie udało się otworzyć obrazu."
+  },
+  "notFound": {
+    "title": "Ups. Nic tu nie ma...",
+    "goHome": "Wróć do ekranu głównego"
+  }
+}

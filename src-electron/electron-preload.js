@@ -31,10 +31,11 @@
 import { contextBridge, ipcRenderer } from "electron";
 
 contextBridge.exposeInMainWorld("ScreenHideAPI", {
+  getAppLocale: () => ipcRenderer.invoke("get-app-locale"),
   setupLockStatus: (status) => {
     return ipcRenderer.invoke("setup-lock-status", status);
   },
-  selectAndShowIMG: (status) => {
-    return ipcRenderer.invoke("select-and-show-IMG", status);
+  selectAndShowIMG: (locale) => {
+    return ipcRenderer.invoke("select-and-show-IMG", locale);
   },
 });

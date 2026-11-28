@@ -1,1 +1,29 @@
-// app global css in SCSS form
+.screen-tooltip {
+  max-width: min(22rem, calc(100vw - 1rem));
+  font-size: 1rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.screen-dialog {
+  width: min(26rem, calc(100vw - 3rem));
+}
+
+.screen-dialog-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.screen-dialog-title {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.screen-dialog .q-btn__content {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,41 @@
+{
+  "languageName": "Español",
+  "app": {
+    "description": "Oculta parte de la pantalla o toda la pantalla con un color o una imagen"
+  },
+  "toolbar": {
+    "backgroundColour": "Elegir el color de fondo",
+    "selectImage": "Seleccionar una imagen para mostrar",
+    "setupKey": "Configurar un nuevo PIN de desbloqueo",
+    "lock": "Haz clic para bloquear",
+    "unlock": "Haz clic para desbloquear"
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "systemDefault": "Predeterminado del sistema"
+  },
+  "common": {
+    "close": "Cerrar"
+  },
+  "pin": {
+    "enterKey": "Introduce el PIN para desbloquear",
+    "saveKey": "Guardar un nuevo PIN",
+    "field": "PIN",
+    "save": "Guardar",
+    "unlock": "Desbloquear",
+    "setupFirst": "🔑 Configura primero un PIN",
+    "unlocked": "🔓 Desbloqueado",
+    "incorrect": "🔒 PIN incorrecto"
+  },
+  "imageDialog": {
+    "title": "Seleccionar una imagen JPG o PNG",
+    "images": "Imágenes",
+    "open": "Abrir",
+    "failed": "No se pudo abrir la imagen."
+  },
+  "notFound": {
+    "title": "Vaya. Aquí no hay nada...",
+    "goHome": "Volver al inicio"
+  }
+}
